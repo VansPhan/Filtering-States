@@ -9,22 +9,35 @@
 <body>
 
 <form>
+
 	<fieldset>
 	<legend><b>Controls</b></legend>
 
-	<!-- checkbox -->
-	<label><input type="checkbox"> 20px </label>
-
-	<!-- drop down box -->
-	<label> Drop down
-		<select>
-			<option></option>
-		</select>
-	</label>
-
-
-	<!-- text box -->
-	<input type="text">
+	<table>
+		<tr>
+			<td>
+				<!-- radio -->
+				<label><input type="radio" name="pixel"> 20px </label></br>
+				<label><input type="radio" name="pixel"> 25px </label></br>
+				<label><input type="radio" name="pixel"> 30px </label>
+			</td>
+			<td>
+				<!-- drop down box -->
+				<label> Font
+					<select>
+						<option value="Arial">Arial</option>
+						<option value="Time New Roman">Time New Roman</option>
+						<option value="Courier New">Courier New</option>
+					</select>
+				</label>
+			</td>
+			<td>
+				<!-- text box -->
+				<label><input type="text">Minimum Length</label>
+				<label><input type="text">Maximum Length</label>
+			</td>
+		</tr>
+	</table>
 	</fieldset>
 
 </form>
