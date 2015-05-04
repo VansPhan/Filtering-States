@@ -37,10 +37,10 @@
 			</td>
 			<td>
 				<!-- text box -->
-				<form action="FUNCTION GOES HERE">
+				<form>
 				<label><input type="text">Minimum Length</label></br>
 				<label><input type="text">Maximum Length</label></br>
-				<input type="submit" value="update">
+				<input type="button" value="update" onclick="update()">
 				</form>
 			</td>
 		</tr>
@@ -57,6 +57,58 @@
                  "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
                  "Oklahoma", "Oregon", "Pennsylvania","Rhode Island","South Carolina", "South Dakota", "Tennessee", "Texas",
                  "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+        function display(array) {
+        	for (var i = 0; i < array.length; i++) {
+        		
+        	};
+        }
+
+        function update () {
+        	alert("Update");
+        }
+
+        //Grabbing from textbox
+        // var num1 = Number(value1.value);
+        // var num1 = Number(value1.value);
+
+        // //Grabbing name option
+        // var options = document.getElementsByName("choice")
+        // if (options[0].checked) {
+        // 	//do something with the first checked
+        // }
+        // else if (options[1]) {
+        // 	//do something with the second checked
+        // }
+        // else {
+        // 	//do something with the third checked
+        // }
+        // answer.innerHTML = solution;
+
+
+        //adjusting font
+
+        function adjustFont () {
+        	//variables initializes
+        	var size = "12pt";
+        	var boldness = "normal";
+        	var color = "black";
+
+        	//code to figure out what is checked
+        	if (largeFont.checked) {
+        		size = "20pt";
+        	}
+        	if (boldFont.checked) {
+        		boldness = "bold";
+        	}
+        	if (redFont.checked) {
+        		color = "red";
+        	}
+
+        	//answer is an id
+        	answer.style.fontSize = size;
+        	answer.style.fontWeight = boldness;
+        	answer.style.color = color;
+        }
       
     </script>
 
