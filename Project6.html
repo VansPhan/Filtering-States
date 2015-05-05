@@ -38,16 +38,18 @@
 			<td>
 				<!-- text box -->
 				<form>
-				<label><input id="min" type="text" value="0">Minimum Length</label></br>
-				<label><input id="max" type="text" value="0">Maximum Length</label></br>
+				<label><input id="min" type="text" value="">Minimum Length</label></br>
+				<label><input id="max" type="text" value="">Maximum Length</label></br>
 				<input type="button" value="update" onclick="textLength(theStates)">
 				</form>
 			</td>
 			<td>
 			<!-- checkbox -->
-				<label><input type="checkbox">Exclude words with "A"</label></br>
-				<label><input type="checkbox">Exclude words with "E"</label></br>
-				<label><input type="checkbox">Exclude words with "O"</label>
+			<form onchange="exclusionCheck(theStates)">
+				<label><input type="checkbox" id="excludeA">Exclude words with "A"</label></br>
+				<label><input type="checkbox" id="excludeE">Exclude words with "E"</label></br>
+				<label><input type="checkbox" id="excludeO">Exclude words with "O"</label>
+			</form>
 			</td>
 		</tr>
 	</table>
@@ -100,22 +102,58 @@
       		}
       	}
 
-      	function textLength(array) {
-      		var myArr = array;
+      	function textLength(myArr) {
       		var min = document.getElementById("min").value;
       		var minNum = parseInt(min);
       		var max = document.getElementById("max").value;
       		var maxNum = parseInt(max);
       		var edited = [];
       		for (var i = 0; i < myArr.length; i++) {
+      			if (isNaN(minNum)) {
+      				var minNum = 0;
+      			}
+      			if (isNaN(maxNum)) {
+      				var maxNum = 100;
+      			}
       			if ((myArr[i].length > minNum) && (myArr[i].length < maxNum)) {
       				edited.push(myArr[i]);
       			}
       		}
-          	var stateString = edited.join(" ");
-			states.innerHTML = stateString;
-			
-      	}
+          	var joinedEditedArray = edited.join(" ");
+			states.innerHTML = joinedEditedArray;
+		}
+
+		function exclusionCheck(myArr) {
+			var filteredArray = [];
+      		if (excludeA.checked) {
+      			for (var i = 0; i < myArr.length; i++) {
+        			var numA = myArr[i].indexOf("a");
+        			if (numA < 0) {
+        				filteredArray.push(myArr[i]);
+        			}
+        		}
+        	}
+        	if (excludeE.checked) {
+      			for (var i = 0; i < myArr.length; i++) {
+        			var numE = myArr[i].indexOf("e");
+        			if (numE < 0) {
+        				filteredArray.push(myArr[i]);
+        			}
+        		}
+        	}
+        	if (excludeO.checked) {
+      			for (var i = 0; i < myArr.length; i++) {
+        			var numO = myArr[i].indexOf("o");
+        			if (numO < 0) {
+        				filteredArray.push(myArr[i]);
+        			}
+        		}
+        	}
+      			
+      		var joinedEditedArray = filteredArray.join(" ");
+			states.innerHTML = joinedEditedArray;
+		}
+
 
 
         // function display(array) {
