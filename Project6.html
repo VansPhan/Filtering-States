@@ -91,16 +91,8 @@
       	}
 
       	function dropdown() {
-      		var selected = document.getElementById("textFamily").value;
-      		if (selected == "Arial") {
-      			states.style.fontFamily = "Arial";
-      		}
-      		else if (selected == "Time New Roman") {
-      			states.style.fontFamily = "Time New Roman";
-      		}
-      		else {
-      			states.style.fontFamily = "Courier New";
-      		}
+      		var selected = textFamily[textFamily.selectedIndex].value;
+      		states.style.fontFamily = selected;
       	}
 
       	function textLength() {
