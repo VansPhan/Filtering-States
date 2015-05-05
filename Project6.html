@@ -8,7 +8,7 @@
 
 <body>
 
-
+	<p id="states"></p>
 
 	<fieldset>
 	<legend><b>Controls</b></legend>
@@ -17,8 +17,8 @@
 		<tr>
 			<td>
 				<!-- radio -->
-				<form>
-				<label><input type="radio" name="pixel"> 20px </label></br>
+				<form onchange="radio()">
+				<label><input type="radio" name="pixel" checked="checked"> 20px </label></br>
 				<label><input type="radio" name="pixel"> 25px </label></br>
 				<label><input type="radio" name="pixel"> 30px </label>
 				</form>
@@ -27,7 +27,7 @@
 				<!-- drop down box -->
 				<form>
 				<label> Font
-					<select>
+					<select id="textFamily" onchange="dropdown()">
 						<option value="Arial">Arial</option>
 						<option value="Time New Roman">Time New Roman</option>
 						<option value="Courier New">Courier New</option>
@@ -38,10 +38,16 @@
 			<td>
 				<!-- text box -->
 				<form>
-				<label><input type="text">Minimum Length</label></br>
-				<label><input type="text">Maximum Length</label></br>
-				<input type="button" value="update" onclick="update()">
+				<label><input id="min" type="text" value="0">Minimum Length</label></br>
+				<label><input id="max" type="text" value="0">Maximum Length</label></br>
+				<input type="button" value="update" onclick="textLength(theStates)">
 				</form>
+			</td>
+			<td>
+			<!-- checkbox -->
+				<label><input type="checkbox">Exclude words with "A"</label></br>
+				<label><input type="checkbox">Exclude words with "E"</label></br>
+				<label><input type="checkbox">Exclude words with "O"</label>
 			</td>
 		</tr>
 	</table>
@@ -57,15 +63,70 @@
                  "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
                  "Oklahoma", "Oregon", "Pennsylvania","Rhode Island","South Carolina", "South Dakota", "Tennessee", "Texas",
                  "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+
+        display(theStates);
+
         function display(array) {
-        	for (var i = 0; i < array.length; i++) {
-        		
-        	};
+          	var stateString = array.join(" ");
+			states.innerHTML = stateString;
+			states.style.fontSize = "20pt";
+			states.style.fontFamily = "Arial";
+
         }
 
-        function update () {
-        	alert("Update");
-        }
+        function radio() {
+        	var choices = document.getElementsByName("pixel");
+        	if (choices[0].checked) {
+        		states.style.fontSize = "20pt";
+      		}
+      		else if (choices[1].checked) {
+      			states.style.fontSize = "25pt";
+      		}
+      		else {
+      			states.style.fontSize = "30pt";
+      		}
+      	}
+
+      	function dropdown() {
+      		var selected = document.getElementById("textFamily").value;
+      		if (selected == "Arial") {
+      			states.style.fontFamily = "Arial";
+      		}
+      		else if (selected == "Time New Roman") {
+      			states.style.fontFamily = "Time New Roman";
+      		}
+      		else {
+      			states.style.fontFamily = "Courier New";
+      		}
+      	}
+
+      	function textLength(array) {
+      		var myArr = array;
+      		var min = document.getElementById("min").value;
+      		var minNum = parseInt(min);
+      		var max = document.getElementById("max").value;
+      		var maxNum = parseInt(max);
+      		var edited = [];
+      		for (var i = 0; i < myArr.length; i++) {
+      			if ((myArr[i].length > minNum) && (myArr[i].length < maxNum)) {
+      				edited.push(myArr[i]);
+      			}
+      		}
+          	var stateString = edited.join(" ");
+			states.innerHTML = stateString;
+			
+      	}
+
+
+        // function display(array) {
+        // 	for (var i = 0; i < array.length; i++) {
+        		
+        // 	};
+        // }
+
+        // function update () {
+        // 	alert("Update");
+        // }
 
         //Grabbing from textbox
         // var num1 = Number(value1.value);
@@ -87,28 +148,28 @@
 
         //adjusting font
 
-        function adjustFont () {
-        	//variables initializes
-        	var size = "12pt";
-        	var boldness = "normal";
-        	var color = "black";
+        // function adjustFont () {
+        // 	//variables initializes
+        // 	var size = "12pt";
+        // 	var boldness = "normal";
+        // 	var color = "black";
 
-        	//code to figure out what is checked
-        	if (largeFont.checked) {
-        		size = "20pt";
-        	}
-        	if (boldFont.checked) {
-        		boldness = "bold";
-        	}
-        	if (redFont.checked) {
-        		color = "red";
-        	}
+        // 	//code to figure out what is checked
+        // 	if (largeFont.checked) {
+        // 		size = "20pt";
+        // 	}
+        // 	if (boldFont.checked) {
+        // 		boldness = "bold";
+        // 	}
+        // 	if (redFont.checked) {
+        // 		color = "red";
+        // 	}
 
-        	//answer is an id
-        	answer.style.fontSize = size;
-        	answer.style.fontWeight = boldness;
-        	answer.style.color = color;
-        }
+        // 	//answer is an id
+        // 	answer.style.fontSize = size;
+        // 	answer.style.fontWeight = boldness;
+        // 	answer.style.color = color;
+        // }
       
     </script>
 
