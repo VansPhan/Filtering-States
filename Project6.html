@@ -40,12 +40,12 @@
 				<form>
 				<label><input id="min" type="text" value="">Minimum Length</label></br>
 				<label><input id="max" type="text" value="">Maximum Length</label></br>
-				<input type="button" value="update" onclick="exclusionCheck(theStates)">
+				<input type="button" value="update" onclick="call()">
 				</form>
 			</td>
 			<td>
 			<!-- checkbox -->
-			<form onchange="exclusionCheck(theStates)">
+			<form onchange="call()">
 				<label><input type="checkbox" id="excludeA">Exclude words with "A"</label></br>
 				<label><input type="checkbox" id="excludeE">Exclude words with "E"</label></br>
 				<label><input type="checkbox" id="excludeO">Exclude words with "O"</label>
@@ -54,105 +54,7 @@
 		</tr>
 	</table>
 	</fieldset>
-
-
   
-
-    <script type="text/javascript">
-        var theStates = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida",
-                 "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
-                 "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
-                 "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
-                 "Oklahoma", "Oregon", "Pennsylvania","Rhode Island","South Carolina", "South Dakota", "Tennessee", "Texas",
-                 "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-
-
-        display(theStates);
-
-        function display(array) {
-          	var stateString = array.join("  ");
-			states.innerHTML = stateString;
-			states.style.fontSize = "20pt";
-			states.style.fontFamily = "Arial";
-
-        }
-
-        function radio() {
-        	var choices = document.getElementsByName("pixel");
-        	if (choices[0].checked) {
-        		states.style.fontSize = "20pt";
-      		}
-      		else if (choices[1].checked) {
-      			states.style.fontSize = "25pt";
-      		}
-      		else {
-      			states.style.fontSize = "30pt";
-      		}
-      	}
-
-      	function dropdown() {
-      		var selected = textFamily[textFamily.selectedIndex].value;
-      		states.style.fontFamily = selected;
-      	}
-
-      	function textLength() {
-      		var myArr = states.innerHTML.split("  ");
-      		var min = document.getElementById("min").value;
-      		var minNum = parseInt(min);
-      		var max = document.getElementById("max").value;
-      		var maxNum = parseInt(max);
-      		var edited = [];
-      		for (var i = 0; i < myArr.length; i++) {
-      			if (isNaN(minNum)) {
-      				var minNum = 0;
-      			}
-      			if (isNaN(maxNum)) {
-      				var maxNum = 100;
-      			}
-      			if ((myArr[i].length > minNum) && (myArr[i].length < maxNum)) {
-      				edited.push(myArr[i]);
-      			}
-      		}
-          	var joinedEditedArray = edited.join("  ");
-			states.innerHTML = joinedEditedArray;
-		}
-
-		function exclusionCheck(array) {
-			var myArr = array.slice(0);
-      		if (excludeA.checked) {
-      			for (var i = 0; i < myArr.length; i++) {
-        			var numA = myArr[i].indexOf("a");
-        			if (numA > 0) {
-        				myArr[i] = "";
-        			}
-        		}
-        	}
-        	if (excludeE.checked) {
-      			for (var i = 0; i < myArr.length; i++) {
-        			var numE = myArr[i].indexOf("e");
-        			if (numE > 0) {
-        				myArr[i] = "";
-        			}
-        		}
-        	}
-        	if (excludeO.checked) {
-      			for (var i = 0; i < myArr.length; i++) {
-        			var numO = myArr[i].indexOf("o");
-        			if (numO > 0) {
-        				myArr[i] = "";
-        			}
-        		}
-        	}
-      			
-      		var joinedEditedArray = myArr.join("  ");
-			states.innerHTML = joinedEditedArray;
-			textLength();
-		}
-
-
-
-        
-    </script>
-
+<script src="Project6.js"></script>
 </body>
 </html>
